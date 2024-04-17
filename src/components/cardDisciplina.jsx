@@ -6,7 +6,7 @@ import Pessoa from 'src/assets/pessoa.png'
 
 const CardDisciplina = ({ disciplina, horario, polo, sala, professor, codTurma, cod, certificadora }) => {
     return (
-        <div className="xl:max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden mt-16">
+        <div className="xl:max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden mt-2">
             <div className="px-7 py-7 flex flex-col gap-5">
                 <div className='flex justify-between items-center'>
                     <h2 className="text-gray-800 text-3xl font-semibold">{disciplina}</h2>

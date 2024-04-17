@@ -19,6 +19,7 @@ const Home = () => {
                         <p className='text-slate-600'>Continue de onde parou</p>
                         <CardContinue disciplina='Pensamento Computacional' />
                         <hr className='border-gray-300 mt-8' />
+                        <h3 className='text-slate-600 text-lg'>Em andamento</h3>
                         <div className='flex gap-12 flex-wrap justify-start'>
                             <CardDisciplina
                                 disciplina='Estrutura de dados'
