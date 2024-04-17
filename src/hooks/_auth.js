@@ -9,10 +9,9 @@ const useAuth = () => {
         and saving in localstorage, allowing him to pass as authenticated. You should implement it better,
         with API requests, and JWT token.    
     */
-    const signin = async ({ name, role }) => {
+    const signin = async ({ name }) => {
         localStorage.setItem(APP_KEY, JSON.stringify({
             name: name,
-            role: role
         }))
         navigate('/auth', { replace: true })
     }

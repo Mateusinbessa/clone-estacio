@@ -1,4 +1,4 @@
-import Seta from 'src/assets/seta.jpg'
+import ArrowRight from 'src/assets/arrowright.png'
 import Maps from 'src/assets/maps.png'
 import Porta from 'src/assets/porta.png'
 import Calendario from 'src/assets/calendario.png'
@@ -9,11 +9,11 @@ const CardDisciplina = ({ disciplina, horario, polo, sala, professor, codTurma, 
         <div className="xl:max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden mt-2">
             <div className="px-7 py-7 flex flex-col gap-5">
                 <div className='flex justify-between items-center'>
-                    <h2 className="text-gray-800 text-3xl font-semibold">{disciplina}</h2>
-                    <div
-                        className='w-12 h-12'
-                    >
-                        <img src={Seta} />
+                    <h2 className="text-gray-800 text-3xl font-semibold sm:max-w-sm">{disciplina}</h2>
+                    <div className='w-10 h-10 cursor-pointer'>
+                        <a href="/auth/details">
+                            <img src={ArrowRight} />
+                        </a>
                     </div>
                 </div>
                 <div className='flex gap-2 items-center ml-2'>

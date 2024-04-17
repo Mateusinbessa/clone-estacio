@@ -16,7 +16,7 @@ const Home = () => {
             <section className='padding-x mt-8'>
                 <div className='bg-gray-100 max-container rounded-xl p-8'>
                     <div className='flex flex-col gap-4'>
-                        <h3 className='text-slate-600 text-lg'>Em andamento</h3>
+                        <h1 className='text-4xl font-semibold'>Minhas disciplinas</h1>
                         <div className='flex gap-12 flex-wrap justify-start'>
                             {disciplinaslist.map(disciplina => (
                                 <CardDisciplina

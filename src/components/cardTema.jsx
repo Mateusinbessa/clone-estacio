@@ -10,7 +10,9 @@ const CardTema = ({ title }) => {
             <small className="bg-green-200 w-28 h-6 mt-5 rounded-md flex justify-center items-center">Visualizado</small>
             <hr className='border-gray-300 mt-4' />
             <div className="flex justify-end items-center mt-4">
-                <img className='cursor-pointer' src={ArrowRight} alt="" />
+                <a href="/auth/content">
+                    <img className='cursor-pointer' src={ArrowRight} alt="" />
+                </a>
             </div>
         </div>
     )

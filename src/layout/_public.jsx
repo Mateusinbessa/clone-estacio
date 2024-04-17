@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
+import Navbar from 'src/components/navbar'
 
 const Public = () => {
     return (
         <section>
-            <p>This should be visible to anyone</p>
+            <Navbar />
             <Outlet />
         </section>
     )

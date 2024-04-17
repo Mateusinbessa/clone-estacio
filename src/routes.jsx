@@ -6,7 +6,7 @@ import React from "react";
 const AdminPage = React.lazy(() => import('src/pages/private/roles/admin/dashboard'));
 const Home = React.lazy(() => import('src/pages/private/home'));
 const Details = React.lazy(() => import('src/pages/private/details'));
-
+const Content = React.lazy(() => import('src/pages/private/content'));
 
 //Public
 const Forbidden = React.lazy(() => import('src/pages/public/forbidden'))
@@ -20,6 +20,7 @@ const routes = createBrowserRouter([
             { path: '', element: <Navigate to='home' replace={true} /> },
             { path: 'home', element: <Home /> },
             { path: 'details', element: <Details /> },
+            { path: 'content', element: <Content /> },
             { path: 'admin', element: <AdminPage /> },
             { path: '*', element: <Navigate to='/404' /> },
         ]
