@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import Navbar from 'src/components/navbar'
+import Navbar from 'src/components/_navbar'
 
 const Public = () => {
     return (

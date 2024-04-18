@@ -1,5 +1,5 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { Navbar } from 'src/components/navbar'
+import { Navbar } from 'src/components/_navbar'
 import { useUtil } from "src/hooks"
 import { useAuth } from 'src/hooks'
 

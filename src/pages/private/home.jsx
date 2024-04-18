@@ -1,5 +1,5 @@
 import Imagem from 'src/assets/banner.png'
-import CardDisciplina from 'src/components/cardDisciplina'
+import { CardDisciplina } from 'src/components'
 import { disciplinaslist } from 'src/constants'
 
 const Home = () => {

@@ -3,9 +3,9 @@ import { themelist } from 'src/constants'
 
 //Images
 import Info from 'src/assets/info.png'
-import CardTema from 'src/components/cardTema'
-import PlansList from 'src/components/plansList'
-import ThemesList from 'src/components/themesList'
+import { CardTema } from 'src/components'
+import { PlansList } from 'src/components'
+import { ThemesList } from 'src/components'
 
 const Details = () => {
     return (
