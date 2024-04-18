@@ -1,6 +1,8 @@
-import { HeaderExercises } from "./components/HeaderExercises";
-import { QuestionCard } from "./components/QuestionCard";
-import { SideBarExercises } from "./components/SideBarExercises";
+import {
+  HeaderExercises,
+  QuestionCard,
+  SideBarExercises,
+} from "src/pages/private/exercises/components";
 
 const Exercises = () => {
   return (

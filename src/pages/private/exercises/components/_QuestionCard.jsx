@@ -1,4 +1,4 @@
-export const QuestionCard = () => {
+const QuestionCard = () => {
   return (
     <div className="w-full h-full  flex flex-col gap-10">
       <div className="w-full flex flex-col bg-white p-6 rounded-lg shadow-lg">
@@ -60,3 +60,7 @@ export const QuestionCard = () => {
     </div>
   );
 };
+
+export default QuestionCard;
+
+export { QuestionCard };

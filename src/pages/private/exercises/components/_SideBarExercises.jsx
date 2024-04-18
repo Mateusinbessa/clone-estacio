@@ -1,4 +1,4 @@
-export const SideBarExercises = () => {
+const SideBarExercises = () => {
   return (
     <div className="w-full h-fit bg-white p-4 rounded-lg shadow-md  ">
       <h3 className="font-normal text-base ">
@@ -39,3 +39,7 @@ export const SideBarExercises = () => {
     </div>
   );
 };
+
+export default SideBarExercises;
+
+export { SideBarExercises };

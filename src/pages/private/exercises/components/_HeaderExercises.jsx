@@ -2,7 +2,7 @@ import { LogOut } from "lucide-react";
 import { Contrast } from "lucide-react";
 import { Type } from "lucide-react";
 
-export const HeaderExercises = () => {
+const HeaderExercises = () => {
   return (
     <header className="sticky top-0 py-2 px-16 mx-0 bg-white shadow-md z-10 ">
       <div className="mx-auto w-full max-w-[1200px] flex justify-between items-center">
@@ -37,3 +37,7 @@ export const HeaderExercises = () => {
     </header>
   );
 };
+
+export default HeaderExercises;
+
+export { HeaderExercises };
