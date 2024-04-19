@@ -1,5 +1,4 @@
-import { ArrowRightCircle } from "lucide-react"
-
+import { ArrowRight } from "lucide-react"
 
 const ThemesList = ({ tema, title }) => {
     return (
@@ -7,7 +6,7 @@ const ThemesList = ({ tema, title }) => {
             <p>{tema}</p>
             <div className='flex justify-between'>
                 <p>{title}</p>
-                <ArrowRightCircle />
+                <ArrowRight />
             </div>
         </div>
     )
