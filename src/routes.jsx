@@ -3,9 +3,6 @@ import { Auth, Public } from "src/layout";
 import React from "react";
 
 //Auth
-const AdminPage = React.lazy(() =>
-  import("src/pages/private/roles/admin/dashboard")
-);
 const Home = React.lazy(() => import("src/pages/private/home"));
 const Details = React.lazy(() => import("src/pages/private/details"));
 const Content = React.lazy(() => import("src/pages/private/content"));
@@ -28,7 +25,6 @@ const routes = createBrowserRouter([
       { path: "home", element: <Home /> },
       { path: "details", element: <Details /> },
       { path: "content", element: <Content /> },
-      { path: "admin", element: <AdminPage /> },
       { path: "exercises", element: <Exercises /> },
       { path: "*", element: <Navigate to="/404" /> },
     ],

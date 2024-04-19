@@ -1,4 +1,4 @@
-import Arrow from 'src/assets/arrow.png'
+import { ArrowRight } from "lucide-react"
 
 const ThemesList = ({ tema, title }) => {
     return (
@@ -6,7 +6,7 @@ const ThemesList = ({ tema, title }) => {
             <p>{tema}</p>
             <div className='flex justify-between'>
                 <p>{title}</p>
-                <img className='h-5' src={Arrow} alt="" />
+                <ArrowRight />
             </div>
         </div>
     )
