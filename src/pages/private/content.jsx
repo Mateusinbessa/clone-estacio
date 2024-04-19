@@ -1,14 +1,13 @@
-import ArrowLeft from 'src/assets/arrowleft.png'
 import Capa from 'src/assets/capa.png'
-import Row from 'src/assets/row.png'
 import { useState } from 'react'
+import { ArrowLeft, Minus } from 'lucide-react'
 
 const NavBar = ({ visualized }) => {
   return (
     <nav className="flex justify-between gap-4 sticky top-0 bg-white p-5">
       <div className='flex items-center gap-2'>
         <a href="/auth/details">
-          <img className='w-7' src={ArrowLeft} alt="" />
+          <ArrowLeft />
         </a>
         <p className='text-xl max-lg:text-lg max-md:text-base max-sm:text-sm'>Voltar para disciplina</p>
       </div>
@@ -20,8 +19,8 @@ const NavBar = ({ visualized }) => {
 
 const TitleContent = ({ title }) => {
   return (
-    <div className='flex gap-4'>
-      <img src={Row} alt="" />
+    <div className='flex gap-4 items-center'>
+      <Minus/>
       <p className='text-4xl'>{title}</p>
     </div>
   )
