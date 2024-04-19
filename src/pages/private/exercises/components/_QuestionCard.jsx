@@ -1,4 +1,8 @@
-const QuestionCard = () => {
+import { QuestionCardOptions } from "./_QuestionCardOptions";
+
+const QuestionCard = ({ alternativeData, questionNumber }) => {
+  const { description, alternatives, selectedAnswer } = alternativeData;
+
   return (
     <div className="w-full h-full  flex flex-col gap-10">
       <div className="w-full flex flex-col bg-white p-6 rounded-lg shadow-lg">
@@ -7,7 +11,7 @@ const QuestionCard = () => {
             className="w-8 h-8 border border-[#E0E0E0] flex items-center justify-center rounded-lg
                bg-[#F5F5F5] "
           >
-            <span className="font-normal text-base">1</span>
+            <span className="font-normal text-base">{questionNumber}</span>
           </div>
           <button
             className="px-3 py-1 border-2 border-black rounded-full
@@ -24,37 +28,18 @@ const QuestionCard = () => {
             </div>
           </button>
         </div>
-        <p className="mt-6 text-[#121212]">
-          Várias estruturas de dados podem ser utilizadas para armazenar dados
-          de uma aplicação. Em relação ao assunto, assinale a alternativa
-          correta.
-        </p>
+        <p className="mt-6 text-[#121212]">{description}</p>
         <div className="mt-6 w-full flex flex-wrap gap-4">
-          <button className="w-full rounded-lg flex gap-4 items-center p-3 border ">
-            <span
-              className="font-normal text-base h-8 w-8 flex items-center 
-            justify-center bg-[#F5F5F5] rounded-full 
-          "
-            >
-              A
-            </span>
-            <p className="text-start">
-              Vetores são estruturas de dados que permitem armazenar diversos
-              tipos de dados de forma sequencial.
-            </p>
-          </button>
-          <button className="w-full rounded-lg flex gap-4 items-center p-3 border ">
-            <span
-              className="font-normal text-base h-8 w-8 flex items-center
-           justify-center bg-[#F5F5F5] rounded-full "
-            >
-              B
-            </span>
-            <p className="text-start">
-              Listas encadeadas são estruturas de dados que permitem armazenar
-              diversos tipos de dados de forma sequencial.
-            </p>
-          </button>
+          {alternatives.map((alternative, index) => (
+            <QuestionCardOptions
+              questionId={alternativeData.id}
+              description={alternative.description}
+              index={index}
+              isSelectedAnswer={alternative.id === selectedAnswer}
+              key={alternative.id}
+              id={alternative.id}
+            />
+          ))}
         </div>
       </div>
     </div>

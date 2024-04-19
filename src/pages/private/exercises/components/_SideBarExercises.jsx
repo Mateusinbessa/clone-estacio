@@ -1,6 +1,6 @@
 const SideBarExercises = () => {
   return (
-    <div className="w-full h-fit bg-white p-4 rounded-lg shadow-md  ">
+    <div className="w-full h-fit bg-white p-4 rounded-lg shadow-md sticky top-[100px] ">
       <h3 className="font-normal text-base ">
         Questão <strong className="text-xl font-bold ">1</strong> de 10
       </h3>
