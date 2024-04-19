@@ -2,11 +2,11 @@ import { ArrowRight, Calendar, DoorOpen, MapPin, User } from 'lucide-react'
 
 const CardDisciplina = ({ disciplina, horario, polo, sala, professor, codTurma, cod }) => {
     return (
-        <div className="xl:max-w-lg w-full bg-white shadow-lg rounded-lg overflow-hidden mt-2">
+        <div className="xl:max-w-lg w-full bg-white shadow-lg rounded-lg">
             <div className="px-7 py-7 flex flex-col gap-5">
                 <div className='flex justify-between items-center gap-2'>
-                    <h2 className="text-gray-800 text-3xl max-lg:text-xl font-semibold sm:max-w-sm">{disciplina}</h2>
-                    <div className='w-10 h-10 max-lg:w-6 max-lg:h-6 cursor-pointer'>
+                    <h2 className="text-gray-800 xl:text-3xl text-2xl font-semibold">{disciplina}</h2>
+                    <div className='cursor-pointer'>
                         <a href="/auth/details">
                             <ArrowRight />
                         </a>

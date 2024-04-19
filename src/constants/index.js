@@ -24,7 +24,7 @@ export const disciplinaslist = [
         sala: '102',
         professor: 'Henrique Mota',
         codTurma: 'ARA0098',
-        cod: '3003',
+        cod: '30034',
         certificadora: true
     },
     {
@@ -34,7 +34,7 @@ export const disciplinaslist = [
         sala: '102',
         professor: 'Mauro Cesar Cantarino Gil',
         codTurma: 'ARA0098',
-        cod: '3003',
+        cod: '30035',
         certificadora: false
     },
     {
@@ -44,7 +44,7 @@ export const disciplinaslist = [
         sala: '102',
         professor: 'Elifranio Alves Cruz',
         codTurma: 'ARA0098',
-        cod: '3003',
+        cod: '30036',
         certificadora: false
     },
 
