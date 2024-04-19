@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge"
+import { clsx } from "clsx"
 import { APP_KEY } from "src/config"
 
 const useUtil = () => {
@@ -8,8 +10,13 @@ const useUtil = () => {
         else return user
     }
 
+    const cn = (...inputs) => {
+        return twMerge(clsx(inputs))
+    }
+
     return {
-        getUser
+        getUser,
+        cn
     }
 }
 

@@ -5,19 +5,25 @@ import { themelist } from 'src/constants'
 import { CardTema } from 'src/components'
 import { PlansList } from 'src/components'
 import { ThemesList } from 'src/components'
+import { Progress } from "src/components"
 
 //Icons
 import { Info } from 'lucide-react'
 
 const Details = () => {
+    const progress = 50
     return (
         <main className='min-h-screen max-container padding-x flex max-lg:flex-col'>
             <div className='flex flex-col w-[35%] max-lg:w-full p-10'>
                 {/* Disciplina */}
                 <p className='text-slate-500'>Disciplina</p>
-                <div className='flex justify-between items-end gap-3'>
+                <div className='flex justify-between items-end gap-3 mb-2'>
                     <h1 className='text-3xl font-semibold'>Estrutura de dados</h1>
                     <Info />
+                </div>
+                <div className='flex justify-center items-center gap-3'>
+                    <Progress value={50} />
+                    <p>{progress}%</p>
                 </div>
 
                 {/* Planos de Aula */}
