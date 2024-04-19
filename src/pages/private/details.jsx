@@ -2,10 +2,10 @@
 import { themelist } from 'src/constants'
 
 //Images
-import Info from 'src/assets/info.png'
 import { CardTema } from 'src/components'
 import { PlansList } from 'src/components'
 import { ThemesList } from 'src/components'
+import { Info } from 'lucide-react'
 
 const Details = () => {
     return (
@@ -16,7 +16,7 @@ const Details = () => {
                 <h1 className='font-semibold'>Disciplina</h1>
                 <div className='flex justify-between items-end'>
                     <p className='text-3xl font-semibold'>Estrutura de dados</p>
-                    <img className='w-6 cursor-pointer' src={Info} alt="" />
+                    <Info />
                 </div>
 
                 {/* Plans */}

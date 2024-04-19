@@ -1,4 +1,4 @@
-import ArrowRight from 'src/assets/arrowright.png'
+import { ArrowRight } from "lucide-react"
 
 const CardTema = ({ title }) => {
     return (
@@ -11,7 +11,7 @@ const CardTema = ({ title }) => {
             <hr className='border-gray-300 mt-4' />
             <div className="flex justify-end items-center mt-4">
                 <a href="/auth/content">
-                    <img className='cursor-pointer' src={ArrowRight} alt="" />
+                    <ArrowRight />
                 </a>
             </div>
         </div>
