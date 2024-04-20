@@ -1,7 +1,11 @@
+import { useExerciseData } from "src/hooks";
 import { QuestionCardOptions } from "./_QuestionCardOptions";
+import { toggleQuestionForReview } from "src/reducers/exercises/exerciseSlice";
 
 const QuestionCard = ({ alternativeData, questionNumber }) => {
   const { description, alternatives, selectedAnswer } = alternativeData;
+
+  const { dispatch } = useExerciseData();
 
   return (
     <div className="w-full h-full  flex flex-col gap-10">
@@ -14,6 +18,11 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
             <span className="font-normal text-base">{questionNumber}</span>
           </div>
           <button
+            onClick={() =>
+              dispatch(
+                toggleQuestionForReview({ questionId: alternativeData.id })
+              )
+            }
             className="px-3 py-1 border-2 border-black rounded-full
          hover:bg-[#E0E0E0] group relative "
           >

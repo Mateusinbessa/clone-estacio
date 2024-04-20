@@ -10,7 +10,6 @@ export const exerciseSlice = createSlice({
   initialState,
   reducers: {
     setCurrentExercise: (state, action) => {
-      console.log(action.payload);
       state.data = action.payload;
     },
     toggleSelectItem: (state, action) => {
@@ -26,9 +25,19 @@ export const exerciseSlice = createSlice({
         question.selectedAnswer = answerId;
       }
     },
+    toggleQuestionForReview: (state, action) => {
+      const { questionId } = action.payload;
+
+      const question = state.data.questions.find(
+        (question) => question.id === questionId
+      );
+
+      question.isMarkedForReview = !question.isMarkedForReview;
+    },
   },
 });
 
-export const { toggleSelectItem, setCurrentExercise } = exerciseSlice.actions;
+export const { toggleSelectItem, setCurrentExercise, toggleQuestionForReview } =
+  exerciseSlice.actions;
 
 export default exerciseSlice.reducer;
