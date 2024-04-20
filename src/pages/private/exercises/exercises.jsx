@@ -16,10 +16,6 @@ const Exercises = () => {
     dispatch(setCurrentExercise(dataQuestions.data));
   }, []);
 
-  // useEffect(() => {
-  //   console.log(exerciseData.data.theme.name);
-  // }, [exerciseData]);
-
   return (
     <div className="w-full">
       <HeaderExercises themeExercise={exerciseData?.data?.theme?.name} />
