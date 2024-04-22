@@ -9,6 +9,9 @@ const Content = React.lazy(() => import("src/pages/private/content"));
 const Exercises = React.lazy(() =>
   import("src/pages/private/exercises/exercises")
 );
+const SubjectCatalog = React.lazy(() =>
+  import("src/pages/private/SubjectCatalog")
+);
 
 //Public
 const Forbidden = React.lazy(() => import("src/pages/public/forbidden"));
@@ -26,6 +29,7 @@ const routes = createBrowserRouter([
       { path: "details", element: <Details /> },
       { path: "content", element: <Content /> },
       { path: "exercises", element: <Exercises /> },
+      { path: "subject-catalog", element: <SubjectCatalog /> },
       { path: "*", element: <Navigate to="/404" /> },
     ],
   },
