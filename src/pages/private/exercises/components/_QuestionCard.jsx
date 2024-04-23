@@ -1,11 +1,17 @@
-import { useExerciseData } from "src/hooks";
+import { useExerciseData, useUtil } from "src/hooks";
 import { QuestionCardOptions } from "./_QuestionCardOptions";
-import { toggleQuestionForReview } from "src/reducers/exercises/exerciseSlice";
+import {
+  toggleQuestionForReview,
+  toggleSelectItem,
+} from "src/reducers/exercises/exerciseSlice";
+import { Button } from "./_Button";
 
 const QuestionCard = ({ alternativeData, questionNumber }) => {
-  const { description, alternatives, selectedAnswer } = alternativeData;
+  const { description, alternatives, selectedAnswer, isMarkedForReview } =
+    alternativeData;
 
   const { dispatch } = useExerciseData();
+  const { cn } = useUtil();
 
   return (
     <div className="w-full h-full  flex flex-col gap-10">
@@ -15,7 +21,17 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
             className="w-8 h-8 border border-[#E0E0E0] flex items-center justify-center rounded-lg
                bg-[#F5F5F5] "
           >
-            <span className="font-normal text-base">{questionNumber}</span>
+            <span
+              className={cn(
+                "font-normal text-base relative",
+                isMarkedForReview &&
+                  `after:content-[''] after:w-2 after:h-2 after:bg-black 
+                  after:absolute after:-top-2 after:left-1/2 after:-translate-x-1/2 after:rounded-full
+                   `
+              )}
+            >
+              {questionNumber}
+            </span>
           </div>
           <button
             onClick={() =>
@@ -39,16 +55,23 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
         </div>
         <p className="mt-6 text-[#121212]">{description}</p>
         <div className="mt-6 w-full flex flex-wrap gap-4">
-          {alternatives.map((alternative, index) => (
+          {/* {alternatives.map((alternative, index) => (
             <QuestionCardOptions
-              questionId={alternativeData.id}
               description={alternative.description}
               index={index}
               isSelectedAnswer={alternative.id === selectedAnswer}
+              onClick={() =>
+                dispatch(
+                  toggleSelectItem({
+                    questionId: alternativeData.id,
+                    answerId: alternative.id,
+                  })
+                )
+              }
               key={alternative.id}
-              id={alternative.id}
             />
-          ))}
+          ))} */}
+          <Button>adofandof</Button>
         </div>
       </div>
     </div>

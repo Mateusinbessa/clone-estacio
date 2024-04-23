@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useExerciseData, useUtil } from "src/hooks";
 import { AlertFinishExercise } from "./_AlertFinishExercise";
 
-const SideBarExercises = () => {
+const SideBarExercises = ({ isAnswerSheet = false }) => {
   const { exerciseData } = useExerciseData();
   const { cn } = useUtil();
 
@@ -25,7 +25,7 @@ const SideBarExercises = () => {
   }, [exerciseData.data.questions]);
 
   return (
-    <div className="w-full h-fit bg-white p-4 rounded-lg shadow-md sticky top-[100px] ">
+    <div className="w-full self-end  top-[100px] h-fit bg-white p-4 rounded-lg shadow-md lg:self-start lg:sticky lg:max-w-[18rem]  ">
       <h3 className="font-normal text-base ">
         Questão <strong className="text-xl font-bold ">1</strong> de 10
       </h3>
@@ -52,20 +52,23 @@ const SideBarExercises = () => {
           <span className="w-2 h-2 rounded-full bg-[#144BC8] block mr-1" />
           Respondidas{" "}
           <strong className="font-bold">
-            ({questionsCompleted?.completed})
+            ({questionsCompleted?.completed || 0})
           </strong>
         </p>
         <p className="flex items-center whitespace-nowrap">
           <span className="w-2 h-2 rounded-full bg-[#E0E0E0] block mr-1" />
           Em branco{" "}
           <strong className="font-bold">
-            ({questionsCompleted?.notCompleted})
+            ({questionsCompleted?.notCompleted || 0})
           </strong>
         </p>
       </div>
-      <div className="w-full h-[1px] my-4 bg-[#E0E0E0]"></div>
-
-      <AlertFinishExercise />
+      {!isAnswerSheet && (
+        <>
+          <div className="w-full h-[1px] my-4 bg-[#E0E0E0]"></div>
+          <AlertFinishExercise />{" "}
+        </>
+      )}
     </div>
   );
 };
