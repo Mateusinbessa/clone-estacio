@@ -1,7 +1,12 @@
 import { useExerciseData, useUtil } from "src/hooks";
 import { toggleQuestionForReview } from "src/reducers/exercises/exerciseSlice";
 
-const QuestionCard = ({ alternativeData, questionNumber, children }) => {
+const QuestionCard = ({
+  alternativeData,
+  questionNumber,
+  children,
+  disableQuestionReview = false,
+}) => {
   const { description, isMarkedForReview } = alternativeData;
 
   const { dispatch } = useExerciseData();
@@ -30,6 +35,7 @@ const QuestionCard = ({ alternativeData, questionNumber, children }) => {
           </div>
           <button
             onClick={() =>
+              !disableQuestionReview &&
               dispatch(
                 toggleQuestionForReview({ questionId: alternativeData.id })
               )

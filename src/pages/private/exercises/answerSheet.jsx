@@ -68,6 +68,7 @@ export const AnswerSheet = () => {
                   alternativeData={alternative}
                   key={alternative.id}
                   questionNumber={index + 1}
+                  disableQuestionReview
                 >
                   {alternative.alternatives.map((alt, ind) => {
                     const btnVariant = checkButtonVariant(
@@ -77,6 +78,7 @@ export const AnswerSheet = () => {
 
                     return (
                       <Button
+                        key={alt.id}
                         variant={btnVariant}
                         size="cardOption"
                         className="justify-start cursor-default"
