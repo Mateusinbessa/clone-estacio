@@ -17,8 +17,6 @@ export const AnswerSheet = () => {
 
   const { cn } = useUtil();
 
-  console.log(dataAnswerSheet);
-
   const checkButtonVariant = (isCorrectAnswer, selectedAnswer) => {
     if (isCorrectAnswer) {
       return "greenNotHover";
@@ -120,7 +118,6 @@ export const AnswerSheet = () => {
             <AsideExercises.QuestionNumberRoot>
               {dataAnswerSheet?.data?.questions?.map((item, index) => {
                 const shablau = normalizeAlternatives(item.alternatives);
-                console.log(shablau);
                 return (
                   <AsideExercises.QuestionNumber
                     item={item}
