@@ -1,16 +1,11 @@
 import { useExerciseData, useUtil } from "src/hooks";
-import { QuestionCardOptions } from "./_QuestionCardOptions";
-import {
-  toggleQuestionForReview,
-  toggleSelectItem,
-} from "src/reducers/exercises/exerciseSlice";
-import { Button } from "./_Button";
+import { toggleQuestionForReview } from "src/reducers/exercises/exerciseSlice";
 
-const QuestionCard = ({ alternativeData, questionNumber }) => {
-  const { description, alternatives, selectedAnswer, isMarkedForReview } =
-    alternativeData;
+const QuestionCard = ({ alternativeData, questionNumber, children }) => {
+  const { description, isMarkedForReview } = alternativeData;
 
   const { dispatch } = useExerciseData();
+
   const { cn } = useUtil();
 
   return (
@@ -46,7 +41,7 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
             <div
               className="absolute whitespace-nowrap bg-[#424242] 
           right-[104%] rounded-lg top-1/2 -translate-y-1/2 p-4 text-white 
-          group-hover:block hidden transition-all duration-150
+          group-hover:block hidden transition-all duration-500
           "
             >
               Marcar questão para revisar antes de finalizar
@@ -54,25 +49,7 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
           </button>
         </div>
         <p className="mt-6 text-[#121212]">{description}</p>
-        <div className="mt-6 w-full flex flex-wrap gap-4">
-          {/* {alternatives.map((alternative, index) => (
-            <QuestionCardOptions
-              description={alternative.description}
-              index={index}
-              isSelectedAnswer={alternative.id === selectedAnswer}
-              onClick={() =>
-                dispatch(
-                  toggleSelectItem({
-                    questionId: alternativeData.id,
-                    answerId: alternative.id,
-                  })
-                )
-              }
-              key={alternative.id}
-            />
-          ))} */}
-          <Button>adofandof</Button>
-        </div>
+        <div className="mt-6 w-full flex flex-wrap gap-4">{children}</div>
       </div>
     </div>
   );

@@ -1,8 +1,4 @@
-import {
-  exerciseSlice,
-  toggleSelectItem,
-} from "src/reducers/exercises/exerciseSlice";
-import { useExerciseData, useUtil } from "src/hooks";
+import { useUtil } from "src/hooks";
 
 export const QuestionCardOptions = ({
   isSelectedAnswer,

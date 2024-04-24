@@ -19,12 +19,17 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        redNotHover: " border bg-[#FFDAD3]  border-[#FF8771]",
+        greenNotHover: " border bg-[#CFF2D8]  border-[#54D073]",
+        defaultNotHover: "bg-white border border-[#e9e8e8] ",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        cardOption:
+          "w-full rounded-lg flex gap-4 items-center p-3 justify-start",
       },
     },
     defaultVariants: {

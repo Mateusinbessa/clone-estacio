@@ -5,11 +5,51 @@ import {
   SideBarExercises,
 } from "src/pages/private/exercises/components/index";
 import { dataAnswerSheet } from "./components/dataAnswerSheet";
+import { Button, buttonVariants } from "./components/_Button";
+import { useUtil } from "src/hooks";
+import { X } from "lucide-react";
+import { FeedBackQuestion } from "./components/_FeedBackQuestion";
+import { AnswerSheetComment } from "./components/_AnswerSheetComment";
+import { AsideExercises } from "./components/AsideExercises";
 
 export const AnswerSheet = () => {
   const { exerciseId } = useParams();
 
+  const { cn } = useUtil();
+
   console.log(dataAnswerSheet);
+
+  const checkButtonVariant = (isCorrectAnswer, selectedAnswer) => {
+    if (isCorrectAnswer) {
+      return "greenNotHover";
+    }
+    if (!isCorrectAnswer && selectedAnswer) {
+      return "redNotHover";
+    }
+    return "defaultNotHover";
+  };
+
+  const normalizeAlternatives = (alternatives) => {
+    return alternatives.reduce(
+      (acc, crr, crrIndex) => {
+        if (crr.wasSelectedAnswer) {
+          acc.hasItemSelected = true;
+        }
+        if (crr.isCorrectAnswer && crr.wasSelectedAnswer) {
+          acc.isCorrect = true;
+        }
+        if (crr.isCorrectAnswer) {
+          acc.correctAlternativeIndex = crrIndex;
+        }
+        return acc;
+      },
+      {
+        isCorrect: false,
+        hasItemSelected: false,
+        correctAlternativeIndex: 0,
+      }
+    );
+  };
 
   return (
     <>
@@ -20,16 +60,97 @@ export const AnswerSheet = () => {
         h-full lg:items-start lg:gap-8  max-w-[1200px] mx-auto"
         >
           <div className="space-y-8">
-            {dataAnswerSheet?.data?.questions?.map((alternative, index) => (
-              <QuestionCard
-                alternativeData={alternative}
-                key={alternative.id}
-                questionNumber={index + 1}
-              />
-            ))}
+            {dataAnswerSheet?.data?.questions?.map((alternative, index) => {
+              const answerSelectionValidity = normalizeAlternatives(
+                alternative.alternatives
+              );
+
+              return (
+                <QuestionCard
+                  alternativeData={alternative}
+                  key={alternative.id}
+                  questionNumber={index + 1}
+                >
+                  {alternative.alternatives.map((alt, ind) => {
+                    const btnVariant = checkButtonVariant(
+                      alt.isCorrectAnswer,
+                      alt.wasSelectedAnswer
+                    );
+
+                    return (
+                      <Button
+                        variant={btnVariant}
+                        size="cardOption"
+                        className="justify-start cursor-default"
+                      >
+                        <span
+                          className={cn(
+                            `font-normal text-base min-h-8 max-h-8 min-w-8 max-w-8 flex items-center 
+                      justify-center rounded-full bg-[#F5F5F5]`,
+                            btnVariant === "redNotHover" &&
+                              "bg-[#991700] text-white",
+                            btnVariant === "greenNotHover" &&
+                              "bg-[#1C662E] text-white"
+                          )}
+                        >
+                          {String.fromCharCode(65 + ind)}
+                        </span>
+                        <p className="text-start text-[#121212]">
+                          {alt.description}
+                        </p>
+                      </Button>
+                    );
+                  })}
+
+                  <FeedBackQuestion
+                    isCorrectAnswer={answerSelectionValidity.isCorrect}
+                    correctAlternativeIndex={
+                      answerSelectionValidity.correctAlternativeIndex
+                    }
+                    hasItemSelected={answerSelectionValidity.hasItemSelected}
+                  />
+                  <AnswerSheetComment comment={alternative.commentedAnswer} />
+                </QuestionCard>
+              );
+            })}
           </div>
 
-          <SideBarExercises isAnswerSheet />
+          <AsideExercises.Root>
+            <AsideExercises.Title />
+            <AsideExercises.QuestionNumberRoot>
+              {dataAnswerSheet?.data?.questions?.map((item, index) => {
+                const shablau = normalizeAlternatives(item.alternatives);
+                console.log(shablau);
+                return (
+                  <AsideExercises.QuestionNumber
+                    item={item}
+                    index={index}
+                    isCorrectAnswer={shablau.isCorrect}
+                    wasSelectedAnswer={shablau.hasItemSelected}
+                    key={index}
+                    isAnswerSheetPage
+                  />
+                );
+              })}
+            </AsideExercises.QuestionNumberRoot>
+            <AsideExercises.QuestionStatsRoot className="flex-col">
+              <AsideExercises.QuestionStats
+                bulletColor="bg-[#cff2d8]"
+                number={dataAnswerSheet.data.rightQuestions}
+                status={"Corretas"}
+              />
+              <AsideExercises.QuestionStats
+                bulletColor="bg-[#E0E0E0]"
+                number={dataAnswerSheet.data.blankQuestions}
+                status={"Incorretas"}
+              />
+              <AsideExercises.QuestionStats
+                bulletColor="bg-[#ffdad3]"
+                number={dataAnswerSheet.data.wrongQuestions}
+                status={"Em branco"}
+              />
+            </AsideExercises.QuestionStatsRoot>
+          </AsideExercises.Root>
         </div>
       </main>
     </>

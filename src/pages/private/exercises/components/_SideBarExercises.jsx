@@ -50,14 +50,14 @@ const SideBarExercises = ({ isAnswerSheet = false }) => {
       <div className="flex gap-2">
         <p className="flex items-center">
           <span className="w-2 h-2 rounded-full bg-[#144BC8] block mr-1" />
-          Respondidas{" "}
+          Respondidas
           <strong className="font-bold">
             ({questionsCompleted?.completed || 0})
           </strong>
         </p>
         <p className="flex items-center whitespace-nowrap">
           <span className="w-2 h-2 rounded-full bg-[#E0E0E0] block mr-1" />
-          Em branco{" "}
+          Em branco
           <strong className="font-bold">
             ({questionsCompleted?.notCompleted || 0})
           </strong>
@@ -66,7 +66,7 @@ const SideBarExercises = ({ isAnswerSheet = false }) => {
       {!isAnswerSheet && (
         <>
           <div className="w-full h-[1px] my-4 bg-[#E0E0E0]"></div>
-          <AlertFinishExercise />{" "}
+          <AlertFinishExercise />
         </>
       )}
     </div>
