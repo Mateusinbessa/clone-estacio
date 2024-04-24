@@ -1,34 +1,12 @@
-import {
-  exerciseSlice,
-  toggleSelectItem,
-} from "src/reducers/exercises/exerciseSlice";
-import { useExerciseData, useUtil } from "src/hooks";
+import { useUtil } from "src/hooks";
 
 export const QuestionCardOptions = ({
   isSelectedAnswer,
   description,
   index,
-  id,
-  questionId,
+  onClick,
 }) => {
-  const options = (ind) => {
-    switch (ind) {
-      case 0:
-        return "A";
-      case 1:
-        return "B";
-      case 2:
-        return "C";
-      case 3:
-        return "D";
-      default:
-        return "E";
-    }
-  };
-
   const { cn } = useUtil();
-
-  const { dispatch } = useExerciseData();
 
   return (
     <button
@@ -38,14 +16,7 @@ export const QuestionCardOptions = ({
         isSelectedAnswer &&
           "bg-[#C2D4FF] hover:border-[#144BC8] border-[#144BC8] hover:bg-[#C2D4FF] "
       )}
-      onClick={() =>
-        dispatch(
-          toggleSelectItem({
-            questionId: questionId,
-            answerId: id,
-          })
-        )
-      }
+      onClick={onClick}
     >
       <span
         className={cn(
@@ -55,7 +26,7 @@ export const QuestionCardOptions = ({
           isSelectedAnswer && "bg-[#144BC8] group-hover:bg-[#144BC8] text-white"
         )}
       >
-        {options(index)}
+        {String.fromCharCode(65 + index)}
       </span>
       <p className="text-start text-[#121212]">{description}</p>
     </button>

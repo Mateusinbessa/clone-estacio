@@ -12,6 +12,9 @@ const Exercises = React.lazy(() =>
 const SubjectCatalog = React.lazy(() =>
   import("src/pages/private/SubjectCatalog")
 );
+const AnswerSheet = React.lazy(() =>
+  import("src/pages/private/exercises/answerSheet")
+);
 
 //Public
 const Forbidden = React.lazy(() => import("src/pages/public/forbidden"));
@@ -30,6 +33,7 @@ const routes = createBrowserRouter([
       { path: "content", element: <Content /> },
       { path: "exercises", element: <Exercises /> },
       { path: "subject-catalog", element: <SubjectCatalog /> },
+      { path: "exercises/:exerciseId/answer-sheet", element: <AnswerSheet /> },
       { path: "*", element: <Navigate to="/404" /> },
     ],
   },

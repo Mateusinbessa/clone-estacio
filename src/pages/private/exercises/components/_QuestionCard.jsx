@@ -1,11 +1,17 @@
-import { useExerciseData } from "src/hooks";
-import { QuestionCardOptions } from "./_QuestionCardOptions";
+import { useExerciseData, useUtil } from "src/hooks";
 import { toggleQuestionForReview } from "src/reducers/exercises/exerciseSlice";
 
-const QuestionCard = ({ alternativeData, questionNumber }) => {
-  const { description, alternatives, selectedAnswer } = alternativeData;
+const QuestionCard = ({
+  alternativeData,
+  questionNumber,
+  children,
+  disableQuestionReview = false,
+}) => {
+  const { description, isMarkedForReview } = alternativeData;
 
   const { dispatch } = useExerciseData();
+
+  const { cn } = useUtil();
 
   return (
     <div className="w-full h-full  flex flex-col gap-10">
@@ -15,10 +21,21 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
             className="w-8 h-8 border border-[#E0E0E0] flex items-center justify-center rounded-lg
                bg-[#F5F5F5] "
           >
-            <span className="font-normal text-base">{questionNumber}</span>
+            <span
+              className={cn(
+                "font-normal text-base relative",
+                isMarkedForReview &&
+                  `after:content-[''] after:w-2 after:h-2 after:bg-black 
+                  after:absolute after:-top-2 after:left-1/2 after:-translate-x-1/2 after:rounded-full
+                   `
+              )}
+            >
+              {questionNumber}
+            </span>
           </div>
           <button
             onClick={() =>
+              !disableQuestionReview &&
               dispatch(
                 toggleQuestionForReview({ questionId: alternativeData.id })
               )
@@ -30,7 +47,7 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
             <div
               className="absolute whitespace-nowrap bg-[#424242] 
           right-[104%] rounded-lg top-1/2 -translate-y-1/2 p-4 text-white 
-          group-hover:block hidden transition-all duration-150
+          group-hover:block hidden transition-all duration-500
           "
             >
               Marcar questão para revisar antes de finalizar
@@ -38,18 +55,7 @@ const QuestionCard = ({ alternativeData, questionNumber }) => {
           </button>
         </div>
         <p className="mt-6 text-[#121212]">{description}</p>
-        <div className="mt-6 w-full flex flex-wrap gap-4">
-          {alternatives.map((alternative, index) => (
-            <QuestionCardOptions
-              questionId={alternativeData.id}
-              description={alternative.description}
-              index={index}
-              isSelectedAnswer={alternative.id === selectedAnswer}
-              key={alternative.id}
-              id={alternative.id}
-            />
-          ))}
-        </div>
+        <div className="mt-6 w-full flex flex-wrap gap-4">{children}</div>
       </div>
     </div>
   );

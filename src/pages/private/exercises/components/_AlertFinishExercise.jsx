@@ -5,7 +5,7 @@ export const AlertFinishExercise = () => {
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
         <button
-          className="flex items-center bg-[#144BC8] text-white gap-3 rounded-lg
+          className="flex items-center justify-center bg-[#144BC8] w-full  text-white gap-3 rounded-lg
             hover:bg-[#144ac837]  px-6 py-2 transition-colors duration-300 hover:text-[#144BC8]
               font-medium text-base
             "
