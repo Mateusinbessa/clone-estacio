@@ -6,6 +6,7 @@ const QuestionCard = ({
   questionNumber,
   children,
   disableQuestionReview = false,
+  id,
 }) => {
   const { description, isMarkedForReview } = alternativeData;
 
@@ -14,7 +15,7 @@ const QuestionCard = ({
   const { cn } = useUtil();
 
   return (
-    <div className="w-full h-full  flex flex-col gap-10">
+    <div id={id} className="w-full h-full  flex flex-col gap-10">
       <div className="w-full flex flex-col bg-white p-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-center ">
           <div

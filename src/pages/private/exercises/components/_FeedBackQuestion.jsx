@@ -22,7 +22,7 @@ export const FeedBackQuestion = ({
     >
       <div
         className={cn(
-          "h-10 w-10 flex items-center justify-center rounded-full",
+          "h-10 w-10 min-h-10 min-w-10 flex items-center justify-center rounded-full",
           isCorrectAnswer && "bg-[#54D073]",
           !isCorrectAnswer && hasItemSelected && "bg-[#FF8771]",
           !hasItemSelected && "bg-[#12121229] "

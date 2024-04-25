@@ -2,15 +2,14 @@ import { useParams } from "react-router-dom";
 import {
   HeaderExercises,
   QuestionCard,
-  SideBarExercises,
 } from "src/pages/private/exercises/components/index";
 import { dataAnswerSheet } from "./components/dataAnswerSheet";
-import { Button, buttonVariants } from "./components/_Button";
+import { Button } from "./components/_Button";
 import { useUtil } from "src/hooks";
-import { X } from "lucide-react";
 import { FeedBackQuestion } from "./components/_FeedBackQuestion";
 import { AnswerSheetComment } from "./components/_AnswerSheetComment";
 import { AsideExercises } from "./components/AsideExercises";
+import { BarChart } from "lucide-react";
 
 export const AnswerSheet = () => {
   const { exerciseId } = useParams();
@@ -49,6 +48,15 @@ export const AnswerSheet = () => {
     );
   };
 
+  const rightQuestionsCount = dataAnswerSheet?.data?.questions
+    ?.map((question) => {
+      const { isCorrect } = normalizeAlternatives(question.alternatives);
+      return isCorrect;
+    })
+    .filter((item) => item && item).length;
+
+  const questionsCount = dataAnswerSheet?.data?.questions.length;
+
   return (
     <>
       <HeaderExercises />
@@ -58,6 +66,25 @@ export const AnswerSheet = () => {
         h-full lg:items-start lg:gap-8  max-w-[1200px] mx-auto"
         >
           <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-[2rem] font-bold text-center leading-tight">
+                Você acertou {rightQuestionsCount} de {questionsCount}{" "}
+              </h1>
+              <p className="text-base font-normal leading-normal text-center">
+                Verifique o seu desempenho e continue treinando! Você pode
+                refazer o exercício quantas vezes quiser.
+              </p>
+              <button
+                className="flex items-center justify-center h-14 bg-[#144BC8] text-white gap-3 rounded-lg
+              hover:bg-[#144ac837]  px-8 py-2  transition-colors duration-300 hover:text-[#144BC8]
+                font-medium text-base mx-auto
+              "
+              >
+                <BarChart />
+                <span>Verificar Desempenho</span>
+              </button>
+            </div>
+
             {dataAnswerSheet?.data?.questions?.map((alternative, index) => {
               const answerSelectionValidity = normalizeAlternatives(
                 alternative.alternatives
@@ -65,6 +92,7 @@ export const AnswerSheet = () => {
 
               return (
                 <QuestionCard
+                  id={`question_${alternative.id}`}
                   alternativeData={alternative}
                   key={alternative.id}
                   questionNumber={index + 1}
@@ -141,12 +169,12 @@ export const AnswerSheet = () => {
               <AsideExercises.QuestionStats
                 bulletColor="bg-[#E0E0E0]"
                 number={dataAnswerSheet.data.blankQuestions}
-                status={"Incorretas"}
+                status={"Em branco"}
               />
               <AsideExercises.QuestionStats
                 bulletColor="bg-[#ffdad3]"
                 number={dataAnswerSheet.data.wrongQuestions}
-                status={"Em branco"}
+                status={"Incorretas"}
               />
             </AsideExercises.QuestionStatsRoot>
           </AsideExercises.Root>

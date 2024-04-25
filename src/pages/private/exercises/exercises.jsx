@@ -49,6 +49,7 @@ const Exercises = () => {
           <div className="space-y-8">
             {exerciseData?.data?.questions?.map((question, index) => (
               <QuestionCard
+                id={`question_${question.id}`}
                 alternativeData={question}
                 key={question.id}
                 questionNumber={index + 1}
@@ -99,9 +100,8 @@ const Exercises = () => {
                 status={"Em branco"}
               />
             </AsideExercises.QuestionStatsRoot>
+            <AsideExercises.Controls />
           </AsideExercises.Root>
-
-          {/* <SideBarExercises /> */}
         </div>
       </main>
     </>
