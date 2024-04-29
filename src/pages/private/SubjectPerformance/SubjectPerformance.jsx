@@ -19,8 +19,17 @@ export const SubjectPerformance = () => {
 					</p>
 				</div>
 				{/* <PerformanceComposedChart /> */}
-				<div style={{ width: '100%', height: '400px' }}>
+				<div
+					className="w-[290px] md:w-[400px] "
+					style={{
+						height: '272px',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+					}}
+				>
 					<PerformancePieChart />
+					<h3>q1</h3>
 				</div>
 				{Array.from({ length: 4 }, (_, i) => i + 1).map((i) => (
 					<div key={i} className=" p-6 bg-white rounded-lg flex flex-col gap-8  ">

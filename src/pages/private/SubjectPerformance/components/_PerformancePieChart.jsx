@@ -1,12 +1,11 @@
-import React, { PureComponent } from 'react'
 import { useState } from 'react'
 import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from 'recharts'
 import colors from 'tailwindcss/colors'
 
 const data = [
+	{ name: 'Corretas', value: 5 },
 	{ name: 'Erradas', value: 2 },
 	{ name: 'Em Branco', value: 3 },
-	{ name: 'Corretas', value: 5 },
 ]
 
 const renderActiveShape = (props) => {
@@ -59,12 +58,9 @@ const renderActiveShape = (props) => {
 			/>
 			<path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
 			<circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-			<text
-				x={ex + (cos >= 0 ? 1 : -1) * 12}
-				y={ey}
-				textAnchor={textAnchor}
-				fill="#333"
-			>{`${value}`}</text>
+			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">
+				{`${value}`} <span className="hidden sm:block">Questões</span>
+			</text>
 			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
 				{`${(percent * 100).toFixed(2)}%`}
 			</text>
@@ -83,13 +79,7 @@ export const PerformancePieChart = () => {
 		})
 	}
 
-	const COLORS = [
-		colors.emerald[500],
-		colors.sky[500],
-		colors.amber[500],
-		colors.violet[500],
-		colors.rose[500],
-	]
+	const COLORS = [colors.emerald[500], colors.rose[500], colors.sky[500]]
 
 	return (
 		<ResponsiveContainer width="100%" height="100%">
@@ -108,7 +98,7 @@ export const PerformancePieChart = () => {
 				>
 					{data.map((entry, index) => (
 						<Cell
-							key={`cell-${index}`}
+							key={`cell-${entry.name}`}
 							fill={COLORS[index]}
 							className="stroke-background hover:opacity-80"
 						/>
