@@ -1,15 +1,25 @@
 import { useParams } from 'react-router-dom'
-import { HeaderExercises, QuestionCard } from 'src/pages/private/exercises/components/index'
+
 import { dataAnswerSheet } from './components/dataAnswerSheet'
-import { Button } from './components/_Button'
 import { useUtil } from 'src/hooks'
-import { FeedBackQuestion } from './components/_FeedBackQuestion'
-import { AnswerSheetComment } from './components/_AnswerSheetComment'
-import { AsideExercises } from './components/AsideExercises'
+
+import {
+	HeaderExercises,
+	QuestionCard,
+	AsideExercises,
+	Button,
+	FeedBackQuestion,
+	AnswerSheetComment,
+} from 'src/pages/private/exercises/components'
 import { BarChart } from 'lucide-react'
+import { useState } from 'react'
+import { X } from 'lucide-react'
+import { CircleCheckBig } from 'lucide-react'
 
 export const AnswerSheet = () => {
 	const { exerciseId } = useParams()
+
+	const [asideIsVisible, setAsideIsVisible] = useState(false)
 
 	const { cn } = useUtil()
 
@@ -56,10 +66,10 @@ export const AnswerSheet = () => {
 
 	return (
 		<>
-			<HeaderExercises themeExercise={dataAnswerSheet.data?.theme?.name} />
+			<HeaderExercises themeExercise={dataAnswerSheet.data?.theme?.name} isAnswerSheet />
 			<main className="w-full min-h-screen py-8 px-4 lg:px-16 bg-[#F5F5F5]">
 				<div
-					className="flex flex-col-reverse gap-8 lg:grid lg:grid-cols-[1fr_18rem] 
+					className="flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_18rem] 
         h-full lg:items-start lg:gap-8  max-w-[1200px] mx-auto"
 				>
 					<div className="space-y-8">
@@ -109,7 +119,7 @@ export const AnswerSheet = () => {
 												<span
 													className={cn(
 														`font-normal text-base min-h-8 max-h-8 min-w-8 max-w-8 flex items-center 
-                      justify-center rounded-full bg-[#F5F5F5]`,
+                      									justify-center rounded-full bg-[#F5F5F5]`,
 														btnVariant === 'redNotHover' && 'bg-[#991700] text-white',
 														btnVariant === 'greenNotHover' && 'bg-[#1C662E] text-white'
 													)}
@@ -132,8 +142,19 @@ export const AnswerSheet = () => {
 						})}
 					</div>
 
-					<AsideExercises.Root>
-						<AsideExercises.Title />
+					<AsideExercises.Root isVisible={asideIsVisible}>
+						{/* <AsideExercises.Title /> */}
+
+						<Button
+							size="icon"
+							className="absolute top-1 right-1 active:bg-[#f5f4f4] lg:hidden "
+							onClick={() => {
+								setAsideIsVisible(!asideIsVisible)
+							}}
+						>
+							<X />
+						</Button>
+
 						<AsideExercises.QuestionNumberRoot>
 							{dataAnswerSheet?.data?.questions?.map((item, index) => {
 								const shablau = normalizeAlternatives(item.alternatives)
@@ -168,6 +189,16 @@ export const AnswerSheet = () => {
 						</AsideExercises.QuestionStatsRoot>
 					</AsideExercises.Root>
 				</div>
+				{!asideIsVisible && (
+					<Button
+						className="fixed bottom-3/4 right-8 lg:hidden  
+				 p-3 bg-[#f5f4f4] border-2 hover:border-black text-[#144BC8]  
+				"
+						onClick={() => setAsideIsVisible(!asideIsVisible)}
+					>
+						<CircleCheckBig />
+					</Button>
+				)}
 			</main>
 		</>
 	)
